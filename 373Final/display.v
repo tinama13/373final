@@ -99,27 +99,89 @@ module display(
 	// pattern generate
 		always @ (posedge CLOCK_50)
 		begin
+			r_red <= 8'h00;
+			r_blue <= 8'h00;
+			r_green <= 8'h00;
 
-			if (counter_y >= 50 && counter_y < 58) begin
-				// "X=XXX" (4 chars wide)
-				case ((counter_x - 20) / 8) // Each character is 8 pixels wide
-					0: if (font_rom[10][counter_y - 50][7 - (counter_x - 20) % 8]) 
-						{r_red, r_green, r_blue} <= {8'h00, 8'h00, 8'h00}; // 'X'
-					1: if (font_rom[11][counter_y - 50][7 - (counter_x - 20) % 8]) 
-						{r_red, r_green, r_blue} <= {8'h00, 8'h00, 8'h00}; // '='
-					2: if (font_rom[x_100s][counter_y - 50][7 - (counter_x - 20) % 8]) 
-						{r_red, r_green, r_blue} <= {8'h00, 8'h00, 8'h00}; // Digit
-					// ... (repeat for x_10s and x_1s)
-				endcase
-				
-				// "Y=XXX" (displayed 50 pixels to the right of X)
-				case ((counter_x - 70) / 8)
-					0: if (font_rom[12][counter_y - 50][7 - (counter_x - 70) % 8]) 
-						{r_red, r_green, r_blue} <= {8'h00, 8'h00, 8'h00}; // 'Y'
-					// ... (repeat for Y value digits)
-				endcase
-        	end
+			if (counter_y >= 74 && counter_y < 79)
+				begin
+					if (counter_x >= 322 && counter_X < 327)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 342 && counter_X < 347)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+				end
 
+			if (counter_y >= 79 && counter_y < 84)
+				begin
+					if (counter_x >= 322 && counter_X < 327)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 342 && counter_X < 347)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+				end
+
+			if (counter_y >= 84 && counter_y < 89)
+				begin
+					if (counter_x >= 327 && counter_X < 332)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 337 && counter_X < 342)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+				end
+
+			if (counter_y >= 89 && counter_y < 94)
+				begin
+					if (counter_x >= 332 && counter_X < 337)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+				end
+
+			if (counter_y >= 94 && counter_y < 99)
+				begin
+					if (counter_x >= 332 && counter_X < 337)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+				end
+
+			if (counter_y >= 99 && counter_y < 104)
+				begin
+					if (counter_x >= 332 && counter_X < 337)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+				end
+			
+			////////////////////////////////////////////////////////////////////////////////////// SECTION 1
 			if (counter_y < 136)
 				begin              
 					r_red <= 8'hFFFF;    // white
