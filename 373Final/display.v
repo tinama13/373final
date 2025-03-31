@@ -5,11 +5,12 @@
 ////////////////////////////////////////////////////////////////////////
 module display(
 	input CLOCK_50,           // 50 MHz
-	output VGA_HS,     // vertical sync
+	input [17:0] SW,
+	output VGA_HS,
 	output VGA_VS,
 	output VGA_CLK,
 	output [7:0] VGA_G,
-	output [7:0] VGA_B  
+	output [7:0] VGA_B
 );
 
 	reg [9:0] counter_x = 0;  // horizontal counter
@@ -65,179 +66,186 @@ module display(
 	// pattern generate
 		always @ (posedge CLOCK_50)
 		begin
+			if (SW[0]) begin
+				r_red <= counter_x[7:0];
+				r_green <= counter_y[7:0];
+				r_blue <= (counter_x + counter_y)[7:0];
+			end
 			////////////////////////////////////////////////////////////////////////////////////// SECTION 1
-			if (counter_y < 135)
-				begin              
-					r_red <= 8'hFFFF;    // white
-					r_blue <= 8'hFFFF;
-					r_green <= 8'hFFFF;
-				end  // if (counter_y < 135)
-			////////////////////////////////////////////////////////////////////////////////////// END SECTION 1
-			
-			////////////////////////////////////////////////////////////////////////////////////// SECTION 2
-			else if (counter_y >= 135 && counter_y < 205)
-				begin 
-					if (counter_x < 324)
-						begin 
-							r_red <= 8'hFFFF;    // white
-							r_blue <= 8'hFFFF;
-							r_green <= 8'hFFFF;
-						end  // if (counter_x < 324)
-					else if (counter_x >= 324 && counter_x < 604)
-						begin 
-							r_red <= 8'hFFFF;    // yellow
-							r_blue <= 8'h0;
-							r_green <= 8'hFFFF;
-						end  // else if (counter_x >= 324 && counter_x < 604)
-					else if (counter_x >= 604)
-						begin 
-							r_red <= 8'hFFFF;    // white
-							r_blue <= 8'hFFFF;
-							r_green <= 8'hFFFF;
-						end  // else if (counter_x >= 604)
-					end  // else if (counter_y >= 135 && counter_y < 205)
-			////////////////////////////////////////////////////////////////////////////////////// END SECTION 2
-			
-			////////////////////////////////////////////////////////////////////////////////////// SECTION 3
-			else if (counter_y >= 205 && counter_y < 217)
-				begin 
-					if (counter_x < 324)
-						begin 
-							r_red <= 8'hFFFF;    // white
-							r_blue <= 8'hFFFF;
-							r_green <= 8'hFFFF;
-						end  // if (counter_x < 324)
-					else if (counter_x >= 324 && counter_x < 371)
-						begin 
-							r_red <= 8'hFFFF;    // yellow
-							r_blue <= 8'h0;
-							r_green <= 8'hFFFF;
-						end  // else if (counter_x >= 324 && counter_x < 371)
-					else if (counter_x >= 371 && counter_x < 383)
-						begin 
-							r_red <= 8'h0;    // black
-							r_blue <= 8'h0;
-							r_green <= 8'h0;
-						end  // else if (counter_x >= 371 && counter_x < 383)
-					else if (counter_x >= 383 && counter_x < 545)
-						begin 
-							r_red <= 8'hFFFF;    // yellow
-							r_blue <= 8'h0;
-							r_green <= 8'hFFFF;
-						end  // else if (counter_x >= 383 && counter_x < 545)
-					else if (counter_x >= 545 && counter_x < 557)
-						begin 
-							r_red <= 8'h0;    // black
-							r_blue <= 8'h0;
-							r_green <= 8'h0;
-						end  // else if (counter_x >= 545 && counter_x < 557)
-					else if (counter_x >= 557 && counter_x < 604)
-						begin 
-							r_red <= 8'hFFFF;    // yellow
-							r_blue <= 8'h0;
-							r_green <= 8'hFFFF;
-						end  // else if (counter_x >= 557 && counter_x < 604)
-					else if (counter_x >= 604)
-						begin 
-							r_red <= 8'hFFFF;    // white
-							r_blue <= 8'hFFFF;
-							r_green <= 8'hFFFF;
-						end  // else if (counter_x >= 604)
-				end  // else if (counter_y >= 205 && counter_y < 217)
-			////////////////////////////////////////////////////////////////////////////////////// END SECTION 3
-			
-			////////////////////////////////////////////////////////////////////////////////////// SECTION 4
-			else if (counter_y >= 217 && counter_y < 305)
-				begin
-					if (counter_x < 324)
-						begin 
-							r_red <= 8'hFFFF;    // white
-							r_blue <= 8'hFFFF;
-							r_green <= 8'hFFFF;
-						end  // if (counter_x < 324)
-					else if (counter_x >= 324 && counter_x < 604)
-						begin 
-							r_red <= 8'hFFFF;    // yellow
-							r_blue <= 8'h0;
-							r_green <= 8'hFFFF;
-						end  // else if (counter_x >= 324 && counter_x < 604)
-					else if (counter_x >= 604)
-						begin 
-							r_red <= 8'hFFFF;    // white
-							r_blue <= 8'hFFFF;
-							r_green <= 8'hFFFF;
-						end  // else if (counter_x >= 604)	
-				end  // else if (counter_y >= 217 && counter_y < 305)
-			////////////////////////////////////////////////////////////////////////////////////// END SECTION 4
-			
-			////////////////////////////////////////////////////////////////////////////////////// SECTION 5
-			else if (counter_y >= 305 && counter_y < 310)
-				begin
-					if (counter_x < 324)
-						begin 
-							r_red <= 8'hFFFF;    // white
-							r_blue <= 8'hFFFF;
-							r_green <= 8'hFFFF;
-						end  // if (counter_x < 324)
-					else if (counter_x >= 324 && counter_x < 371)
-						begin 
-							r_red <= 8'hFFFF;    // yellow
-							r_blue <= 8'h0;
-							r_green <= 8'hFFFFF;
-						end  // else if (counter_x >= 324 && counter_x < 371)
-					else if (counter_x >= 371 && counter_x < 557)
-						begin 
-							r_red <= 8'h0;    // black
-							r_blue <= 8'h0;
-							r_green <= 8'h0;
-						end  // else if (counter_x >= 371 && counter_x < 557)
-					else if (counter_x >= 557 && counter_x < 604)
-						begin 
-							r_red <= 8'hFFFF;    // yellow
-							r_blue <= 8'h0;
-							r_green <= 8'hFFFF;
-						end  // else if (counter_x >= 557 && counter_x < 604)
-					else if (counter_x >= 604)
-						begin 
-							r_red <= 8'hFFFF;    // white
-							r_blue <= 8'hFFFF;
-							r_green <= 8'hFFFF;
-						end  // else if (counter_x >= 604)	
-				end  // else if (counter_y >= 217 && counter_y < 305)
-			////////////////////////////////////////////////////////////////////////////////////// END SECTION 5
-			
-			////////////////////////////////////////////////////////////////////////////////////// SECTION 6
-			else if (counter_y >= 305 && counter_y < 414)
-				begin
-					if (counter_x < 324)
-						begin 
-							r_red <= 8'hFFFF;    // white
-							r_blue <= 8'hFFFF;
-							r_green <= 8'hFFFF;
-						end  // if (counter_x < 324)
-					else if (counter_x >= 324 && counter_x < 604)
-						begin 
-							r_red <= 8'hFFFF;    // yellow
-							r_blue <= 8'h0;
-							r_green <= 8'hFFFF;
-						end  // else if (counter_x >= 324 && counter_x < 604)
-					else if (counter_x >= 604)
-						begin 
-							r_red <= 8'hFFFF;    // white
-							r_blue <= 8'hFFFF;
-							r_green <= 8'hFFFF;
-						end  // else if (counter_x >= 604)	
-				end  // else if (counter_y >= 305 && counter_y < 414)
-			////////////////////////////////////////////////////////////////////////////////////// END SECTION 6
-			
-			////////////////////////////////////////////////////////////////////////////////////// SECTION 7
-			else if (counter_y <= 414)
-				begin              
-					r_red <= 8'hFFFF;    // white
-					r_blue <= 8'hFFFF;
-					r_green <= 8'hFFFF;
-				end  // if (counter_y >= 414)
-			////////////////////////////////////////////////////////////////////////////////////// END SECTION 7
+			else begin
+				if (counter_y < 135)
+					begin              
+						r_red <= 8'hFFFF;    // white
+						r_blue <= 8'hFFFF;
+						r_green <= 8'hFFFF;
+					end  // if (counter_y < 135)
+				////////////////////////////////////////////////////////////////////////////////////// END SECTION 1
+				
+				////////////////////////////////////////////////////////////////////////////////////// SECTION 2
+				else if (counter_y >= 135 && counter_y < 205)
+					begin 
+						if (counter_x < 324)
+							begin 
+								r_red <= 8'hFFFF;    // white
+								r_blue <= 8'hFFFF;
+								r_green <= 8'hFFFF;
+							end  // if (counter_x < 324)
+						else if (counter_x >= 324 && counter_x < 604)
+							begin 
+								r_red <= 8'hFFFF;    // yellow
+								r_blue <= 8'h0;
+								r_green <= 8'hFFFF;
+							end  // else if (counter_x >= 324 && counter_x < 604)
+						else if (counter_x >= 604)
+							begin 
+								r_red <= 8'hFFFF;    // white
+								r_blue <= 8'hFFFF;
+								r_green <= 8'hFFFF;
+							end  // else if (counter_x >= 604)
+						end  // else if (counter_y >= 135 && counter_y < 205)
+				////////////////////////////////////////////////////////////////////////////////////// END SECTION 2
+				
+				////////////////////////////////////////////////////////////////////////////////////// SECTION 3
+				else if (counter_y >= 205 && counter_y < 217)
+					begin 
+						if (counter_x < 324)
+							begin 
+								r_red <= 8'hFFFF;    // white
+								r_blue <= 8'hFFFF;
+								r_green <= 8'hFFFF;
+							end  // if (counter_x < 324)
+						else if (counter_x >= 324 && counter_x < 371)
+							begin 
+								r_red <= 8'hFFFF;    // yellow
+								r_blue <= 8'h0;
+								r_green <= 8'hFFFF;
+							end  // else if (counter_x >= 324 && counter_x < 371)
+						else if (counter_x >= 371 && counter_x < 383)
+							begin 
+								r_red <= 8'h0;    // black
+								r_blue <= 8'h0;
+								r_green <= 8'h0;
+							end  // else if (counter_x >= 371 && counter_x < 383)
+						else if (counter_x >= 383 && counter_x < 545)
+							begin 
+								r_red <= 8'hFFFF;    // yellow
+								r_blue <= 8'h0;
+								r_green <= 8'hFFFF;
+							end  // else if (counter_x >= 383 && counter_x < 545)
+						else if (counter_x >= 545 && counter_x < 557)
+							begin 
+								r_red <= 8'h0;    // black
+								r_blue <= 8'h0;
+								r_green <= 8'h0;
+							end  // else if (counter_x >= 545 && counter_x < 557)
+						else if (counter_x >= 557 && counter_x < 604)
+							begin 
+								r_red <= 8'hFFFF;    // yellow
+								r_blue <= 8'h0;
+								r_green <= 8'hFFFF;
+							end  // else if (counter_x >= 557 && counter_x < 604)
+						else if (counter_x >= 604)
+							begin 
+								r_red <= 8'hFFFF;    // white
+								r_blue <= 8'hFFFF;
+								r_green <= 8'hFFFF;
+							end  // else if (counter_x >= 604)
+					end  // else if (counter_y >= 205 && counter_y < 217)
+				////////////////////////////////////////////////////////////////////////////////////// END SECTION 3
+				
+				////////////////////////////////////////////////////////////////////////////////////// SECTION 4
+				else if (counter_y >= 217 && counter_y < 305)
+					begin
+						if (counter_x < 324)
+							begin 
+								r_red <= 8'hFFFF;    // white
+								r_blue <= 8'hFFFF;
+								r_green <= 8'hFFFF;
+							end  // if (counter_x < 324)
+						else if (counter_x >= 324 && counter_x < 604)
+							begin 
+								r_red <= 8'hFFFF;    // yellow
+								r_blue <= 8'h0;
+								r_green <= 8'hFFFF;
+							end  // else if (counter_x >= 324 && counter_x < 604)
+						else if (counter_x >= 604)
+							begin 
+								r_red <= 8'hFFFF;    // white
+								r_blue <= 8'hFFFF;
+								r_green <= 8'hFFFF;
+							end  // else if (counter_x >= 604)	
+					end  // else if (counter_y >= 217 && counter_y < 305)
+				////////////////////////////////////////////////////////////////////////////////////// END SECTION 4
+				
+				////////////////////////////////////////////////////////////////////////////////////// SECTION 5
+				else if (counter_y >= 305 && counter_y < 310)
+					begin
+						if (counter_x < 324)
+							begin 
+								r_red <= 8'hFFFF;    // white
+								r_blue <= 8'hFFFF;
+								r_green <= 8'hFFFF;
+							end  // if (counter_x < 324)
+						else if (counter_x >= 324 && counter_x < 371)
+							begin 
+								r_red <= 8'hFFFF;    // yellow
+								r_blue <= 8'h0;
+								r_green <= 8'hFFFFF;
+							end  // else if (counter_x >= 324 && counter_x < 371)
+						else if (counter_x >= 371 && counter_x < 557)
+							begin 
+								r_red <= 8'h0;    // black
+								r_blue <= 8'h0;
+								r_green <= 8'h0;
+							end  // else if (counter_x >= 371 && counter_x < 557)
+						else if (counter_x >= 557 && counter_x < 604)
+							begin 
+								r_red <= 8'hFFFF;    // yellow
+								r_blue <= 8'h0;
+								r_green <= 8'hFFFF;
+							end  // else if (counter_x >= 557 && counter_x < 604)
+						else if (counter_x >= 604)
+							begin 
+								r_red <= 8'hFFFF;    // white
+								r_blue <= 8'hFFFF;
+								r_green <= 8'hFFFF;
+							end  // else if (counter_x >= 604)	
+					end  // else if (counter_y >= 217 && counter_y < 305)
+				////////////////////////////////////////////////////////////////////////////////////// END SECTION 5
+				
+				////////////////////////////////////////////////////////////////////////////////////// SECTION 6
+				else if (counter_y >= 305 && counter_y < 414)
+					begin
+						if (counter_x < 324)
+							begin 
+								r_red <= 8'hFFFF;    // white
+								r_blue <= 8'hFFFF;
+								r_green <= 8'hFFFF;
+							end  // if (counter_x < 324)
+						else if (counter_x >= 324 && counter_x < 604)
+							begin 
+								r_red <= 8'hFFFF;    // yellow
+								r_blue <= 8'h0;
+								r_green <= 8'hFFFF;
+							end  // else if (counter_x >= 324 && counter_x < 604)
+						else if (counter_x >= 604)
+							begin 
+								r_red <= 8'hFFFF;    // white
+								r_blue <= 8'hFFFF;
+								r_green <= 8'hFFFF;
+							end  // else if (counter_x >= 604)	
+					end  // else if (counter_y >= 305 && counter_y < 414)
+				////////////////////////////////////////////////////////////////////////////////////// END SECTION 6
+				
+				////////////////////////////////////////////////////////////////////////////////////// SECTION 7
+				else if (counter_y <= 414)
+					begin              
+						r_red <= 8'hFFFF;    // white
+						r_blue <= 8'hFFFF;
+						r_green <= 8'hFFFF;
+					end  // if (counter_y >= 414)
+				////////////////////////////////////////////////////////////////////////////////////// END SECTION 7
+			end
 		end  // always
 						
 	// end pattern generate
