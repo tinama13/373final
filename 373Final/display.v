@@ -73,10 +73,53 @@ module display(
 	
 	wire [9:0] dot_x = origin_x + input_x;
 	wire [9:0] dot_y = origin_y + input_y;
+
+	reg [7:0] font_rom [0:9][0:7]; // 10 digits, 8 rows each
+    initial begin
+        // Digit '0'
+        font_rom[0][0] = 8'b00111100; //   ****  
+        font_rom[0][1] = 8'b01100110; //  **  ** 
+        font_rom[0][2] = 8'b01100110; //  **  **
+        font_rom[0][3] = 8'b01100110; //  **  **
+        font_rom[0][4] = 8'b01100110; //  **  **
+        font_rom[0][5] = 8'b01100110; //  **  **
+        font_rom[0][6] = 8'b00111100; //   ****  
+        font_rom[0][7] = 8'b00000000;
+        
+    end
+
+	wire [3:0] x_100s = input_x / 100;
+    wire [3:0] x_10s  = (input_x % 100) / 10;
+    wire [3:0] x_1s   = input_x % 10;
+    wire [3:0] y_100s = input_y / 100;
+    wire [3:0] y_10s  = (input_y % 100) / 10;
+    wire [3:0] y_1s   = input_y % 10;
+
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// pattern generate
 		always @ (posedge CLOCK_50)
 		begin
+
+			if (counter_y >= 50 && counter_y < 58) begin
+				// "X=XXX" (4 chars wide)
+				case ((counter_x - 20) / 8) // Each character is 8 pixels wide
+					0: if (font_rom[10][counter_y - 50][7 - (counter_x - 20) % 8]) 
+						{r_red, r_green, r_blue} <= {8'h00, 8'h00, 8'h00}; // 'X'
+					1: if (font_rom[11][counter_y - 50][7 - (counter_x - 20) % 8]) 
+						{r_red, r_green, r_blue} <= {8'h00, 8'h00, 8'h00}; // '='
+					2: if (font_rom[x_100s][counter_y - 50][7 - (counter_x - 20) % 8]) 
+						{r_red, r_green, r_blue} <= {8'h00, 8'h00, 8'h00}; // Digit
+					// ... (repeat for x_10s and x_1s)
+				endcase
+				
+				// "Y=XXX" (displayed 50 pixels to the right of X)
+				case ((counter_x - 70) / 8)
+					0: if (font_rom[12][counter_y - 50][7 - (counter_x - 70) % 8]) 
+						{r_red, r_green, r_blue} <= {8'h00, 8'h00, 8'h00}; // 'Y'
+					// ... (repeat for Y value digits)
+				endcase
+        	end
+
 			if (counter_y < 136)
 				begin              
 					r_red <= 8'hFFFF;    // white
