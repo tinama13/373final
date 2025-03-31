@@ -74,112 +74,23 @@ module display(
 	wire [9:0] dot_x = origin_x + input_x;
 	wire [9:0] dot_y = origin_y + input_y;
 
-	reg [7:0] font_rom [0:9][0:7]; // 10 digits, 8 rows each
-    initial begin
-        // Digit '0'
-        font_rom[0][0] = 8'b00111100; //   ****  
-        font_rom[0][1] = 8'b01100110; //  **  ** 
-        font_rom[0][2] = 8'b01100110; //  **  **
-        font_rom[0][3] = 8'b01100110; //  **  **
-        font_rom[0][4] = 8'b01100110; //  **  **
-        font_rom[0][5] = 8'b01100110; //  **  **
-        font_rom[0][6] = 8'b00111100; //   ****  
-        font_rom[0][7] = 8'b00000000;
-        
-    end
-
-	wire [3:0] x_100s = input_x / 100;
-    wire [3:0] x_10s  = (input_x % 100) / 10;
-    wire [3:0] x_1s   = input_x % 10;
-    wire [3:0] y_100s = input_y / 100;
-    wire [3:0] y_10s  = (input_y % 100) / 10;
-    wire [3:0] y_1s   = input_y % 10;
+	reg [19:0] digit_0 [0:5];
+	initial begin
+		digit_0[0] = 19'b00000111111111100000;
+		digit_0[1] = 19'b11111000000000011111;
+		digit_0[2] = 19'b11111000000000011111;
+		digit_0[3] = 19'b11111000000000011111;
+		digit_0[4] = 19'b11111000000000011111;
+		digit_0[5] = 19'b00000111111111100000;
+	end
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// pattern generate
 		always @ (posedge CLOCK_50)
 		begin
-			r_red <= 8'h00;
-			r_blue <= 8'h00;
-			r_green <= 8'h00;
-
-			if (counter_y >= 74 && counter_y < 79)
-				begin
-					if (counter_x >= 322 && counter_X < 327)
-						begin 
-							r_red <= 8'h00;
-							r_blue <= 8'h00;
-							r_green <= 8'h00;
-						end
-					if (counter_x >= 342 && counter_X < 347)
-						begin 
-							r_red <= 8'h00;
-							r_blue <= 8'h00;
-							r_green <= 8'h00;
-						end
-				end
-
-			if (counter_y >= 79 && counter_y < 84)
-				begin
-					if (counter_x >= 322 && counter_X < 327)
-						begin 
-							r_red <= 8'h00;
-							r_blue <= 8'h00;
-							r_green <= 8'h00;
-						end
-					if (counter_x >= 342 && counter_X < 347)
-						begin 
-							r_red <= 8'h00;
-							r_blue <= 8'h00;
-							r_green <= 8'h00;
-						end
-				end
-
-			if (counter_y >= 84 && counter_y < 89)
-				begin
-					if (counter_x >= 327 && counter_X < 332)
-						begin 
-							r_red <= 8'h00;
-							r_blue <= 8'h00;
-							r_green <= 8'h00;
-						end
-					if (counter_x >= 337 && counter_X < 342)
-						begin 
-							r_red <= 8'h00;
-							r_blue <= 8'h00;
-							r_green <= 8'h00;
-						end
-				end
-
-			if (counter_y >= 89 && counter_y < 94)
-				begin
-					if (counter_x >= 332 && counter_X < 337)
-						begin 
-							r_red <= 8'h00;
-							r_blue <= 8'h00;
-							r_green <= 8'h00;
-						end
-				end
-
-			if (counter_y >= 94 && counter_y < 99)
-				begin
-					if (counter_x >= 332 && counter_X < 337)
-						begin 
-							r_red <= 8'h00;
-							r_blue <= 8'h00;
-							r_green <= 8'h00;
-						end
-				end
-
-			if (counter_y >= 99 && counter_y < 104)
-				begin
-					if (counter_x >= 332 && counter_X < 337)
-						begin 
-							r_red <= 8'h00;
-							r_blue <= 8'h00;
-							r_green <= 8'h00;
-						end
-				end
+			r_red <= 8'hFF;
+			r_blue <= 8'hFF;
+			r_green <= 8'hFF;
 			
 			////////////////////////////////////////////////////////////////////////////////////// SECTION 1
 			if (counter_y < 136)
@@ -290,6 +201,272 @@ module display(
 					r_green <= 8'h00;
 				end
 				
+			if (counter_y >= 74 && counter_y < 79)
+				begin
+					if (counter_x >= 468 && counter_x < 473)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 488 && counter_x < 493)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 338 && counter_x < 343)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 348 && counter_x < 353)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 358 && counter_x < 363)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 583 && counter_x < 588)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+				end
+
+			if (counter_y >= 79 && counter_y < 84)
+				begin
+					if (counter_x >= 468 && counter_x < 473)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 488 && counter_x < 493)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 498 && counter_x < 503)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 333 && counter_x < 338)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 348 && counter_x < 353)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 358 && counter_x < 363)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 368 && counter_x < 373)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 588 && counter_x < 593)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+				end
+
+			if (counter_y >= 84 && counter_y < 89)
+				begin
+					if (counter_x >= 473 && counter_x < 478)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 483 && counter_x < 488)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 333 && counter_x < 338)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 353 && counter_x < 358)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 588 && counter_x < 593)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+				end
+
+			if (counter_y >= 89 && counter_y < 94)
+				begin
+					if (counter_x >= 478 && counter_x < 483)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 333 && counter_x < 338)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 348 && counter_x < 353)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 358 && counter_x < 363)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 588 && counter_x < 593)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+				end
+
+			if (counter_y >= 94 && counter_y < 99)
+				begin
+					if (counter_x >= 478 && counter_x < 483)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 498 && counter_x < 503)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 333 && counter_x < 338)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 348 && counter_x < 353)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 358 && counter_x < 363)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 368 && counter_x < 373)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 588 && counter_x < 593)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+				end
+
+			if (counter_y >= 99 && counter_y < 104)
+				begin
+					if (counter_x >= 478 && counter_x < 483)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 458 && counter_x < 463)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 338 && counter_x < 343)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 348 && counter_x < 353)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 358 && counter_x < 363)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+					if (counter_x >= 583 && counter_x < 588)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+				end
+			
+			if (counter_y >= 104 && counter_y < 109)
+				begin
+					if (counter_x >= 453 && counter_x < 458)
+						begin 
+							r_red <= 8'h00;
+							r_blue <= 8'h00;
+							r_green <= 8'h00;
+						end
+				end
+				
+			if (counter_y >= 200 && counter_y < 220 && counter_x >= 200 && counter_x < 220)
+				begin 
+					
+					if (digit_0[counter_y - 200][19-(counter_x - 200)]) begin
+						r_red <= 8'h00;
+						r_blue <= 8'h00;
+						r_green <= 8'h00;
+					end
+					
+				end
 		end  // always
 						
 	// end pattern generate
