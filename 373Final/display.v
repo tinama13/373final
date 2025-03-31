@@ -9,6 +9,7 @@ module display(
 	output VGA_HS,
 	output VGA_VS,
 	output VGA_CLK,
+	output [7:0] VGA_R,
 	output [7:0] VGA_G,
 	output [7:0] VGA_B
 );
@@ -67,7 +68,7 @@ module display(
 		always @ (posedge CLOCK_50)
 		begin
 			if (SW[0]) begin
-				if (counter_y < 135)
+				if (counter_y < 136)
 					begin              
 						r_red <= 8'hFFFF;    // white
 						r_blue <= 8'hFFFF;
@@ -76,40 +77,97 @@ module display(
 				////////////////////////////////////////////////////////////////////////////////////// END SECTION 1
 				
 				////////////////////////////////////////////////////////////////////////////////////// SECTION 2
-				else if (counter_y >= 135 && counter_y < 140)
+				else if (counter_y >= 136 && counter_y < 141)
 					begin 
-						if (counter_x < 164)
+						if (counter_x < 165)
 							begin 
 								r_red <= 8'hFFFF;    // white
 								r_blue <= 8'hFFFF;
 								r_green <= 8'hFFFF;
 							end
-						else if (counter_x >= 164 && counter_x < 169)
+						else if (counter_x >= 165 && counter_x < 755)
 							begin 
 								r_red <= 8'h0;    // black
 								r_blue <= 8'h0;
 								r_green <= 8'h0;
 							end
-						else if (counter_x >= 169 && counter_x < 758)
-							begin 
-								r_red <= 8'hFFFF;    // white
-								r_blue <= 8'hFFFF;
-								r_green <= 8'hFFFF;
-							end 
-						else if (counter_x >= 758 && counter_x < 763)
-							begin 
-								r_red <= 8'h0;    // black
-								r_blue <= 8'h0;
-								r_green <= 8'h0;
-							end 
-						else if (counter_x >= 763)
+						else if (counter_x >= 755)
 							begin 
 								r_red <= 8'hFFFF;    // white
 								r_blue <= 8'hFFFF;
 								r_green <= 8'hFFFF;
 							end
-						end
+					end
 				////////////////////////////////////////////////////////////////////////////////////// END SECTION 2
+
+				////////////////////////////////////////////////////////////////////////////////////// SECTION 3
+				else if (counter_y >= 141 && counter_y < 359)
+					begin 
+						if (counter_x < 165)
+							begin 
+								r_red <= 8'hFFFF;    // white
+								r_blue <= 8'hFFFF;
+								r_green <= 8'hFFFF;
+							end
+						else if (counter_x >= 165 && counter_x < 170)
+							begin 
+								r_red <= 8'h00;    // black
+								r_blue <= 8'h00;
+								r_green <= 8'h00;
+							end
+						else if (counter_x >= 170 && counter_x < 750)
+							begin 
+								r_red <= 8'hFFFF;    // white
+								r_blue <= 8'hFFFF;
+								r_green <= 8'hFFFF;
+							end
+						else if (counter_x >= 750 && counter_x < 755)
+							begin 
+								r_red <= 8'h00;    // black
+								r_blue <= 8'h00;
+								r_green <= 8'h00;
+							end
+						else if (counter_x >= 755)
+							begin 
+								r_red <= 8'hFFFF;    // white
+								r_blue <= 8'hFFFF;
+								r_green <= 8'hFFFF;
+							end
+					end
+				////////////////////////////////////////////////////////////////////////////////////// END SECTION 3
+
+				////////////////////////////////////////////////////////////////////////////////////// SECTION 4
+				else if (counter_y >= 359 && counter_y < 364)
+					begin 
+						if (counter_x < 165)
+							begin 
+								r_red <= 8'hFFFF;    // white
+								r_blue <= 8'hFFFF;
+								r_green <= 8'hFFFF;
+							end
+						else if (counter_x >= 165 && counter_x < 755)
+							begin 
+								r_red <= 8'h0;    // black
+								r_blue <= 8'h0;
+								r_green <= 8'h0;
+							end
+						else if (counter_x >= 755)
+							begin 
+								r_red <= 8'hFFFF;    // white
+								r_blue <= 8'hFFFF;
+								r_green <= 8'hFFFF;
+							end
+					end
+				////////////////////////////////////////////////////////////////////////////////////// END SECTION 4
+				
+				////////////////////////////////////////////////////////////////////////////////////// SECTION 5
+				else if (counter_y >= 364)
+					begin
+						r_red <= 8'hFFFF;    // white
+						r_blue <= 8'hFFFF;
+						r_green <= 8'hFFFF;
+					end
+				////////////////////////////////////////////////////////////////////////////////////// END SECTION 5
 				
 			end
 			////////////////////////////////////////////////////////////////////////////////////// SECTION 1
