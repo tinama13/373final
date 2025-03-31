@@ -67,9 +67,50 @@ module display(
 		always @ (posedge CLOCK_50)
 		begin
 			if (SW[0]) begin
-				r_red <= counter_x[7:0];
-				r_green <= counter_y[7:0];
-				r_blue <= (counter_x + counter_y)[7:0];
+				if (counter_y < 135)
+					begin              
+						r_red <= 8'hFFFF;    // white
+						r_blue <= 8'hFFFF;
+						r_green <= 8'hFFFF;
+					end  // if (counter_y < 135)
+				////////////////////////////////////////////////////////////////////////////////////// END SECTION 1
+				
+				////////////////////////////////////////////////////////////////////////////////////// SECTION 2
+				else if (counter_y >= 135 && counter_y < 140)
+					begin 
+						if (counter_x < 164)
+							begin 
+								r_red <= 8'hFFFF;    // white
+								r_blue <= 8'hFFFF;
+								r_green <= 8'hFFFF;
+							end
+						else if (counter_x >= 164 && counter_x < 169)
+							begin 
+								r_red <= 8'h0;    // black
+								r_blue <= 8'h0;
+								r_green <= 8'h0;
+							end
+						else if (counter_x >= 169 && counter_x < 758)
+							begin 
+								r_red <= 8'hFFFF;    // white
+								r_blue <= 8'hFFFF;
+								r_green <= 8'hFFFF;
+							end 
+						else if (counter_x >= 758 && counter_x < 763)
+							begin 
+								r_red <= 8'h0;    // black
+								r_blue <= 8'h0;
+								r_green <= 8'h0;
+							end 
+						else if (counter_x >= 763)
+							begin 
+								r_red <= 8'hFFFF;    // white
+								r_blue <= 8'hFFFF;
+								r_green <= 8'hFFFF;
+							end
+						end
+				////////////////////////////////////////////////////////////////////////////////////// END SECTION 2
+				
 			end
 			////////////////////////////////////////////////////////////////////////////////////// SECTION 1
 			else begin
