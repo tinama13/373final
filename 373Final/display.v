@@ -74,16 +74,16 @@ module display(
 	wire [9:0] dot_x = origin_x + input_x;
 	wire [9:0] dot_y = origin_y + input_y;
 
-	reg [7:0] digit_0 [0:7];
+	reg [19:0] digit_0 [0:7];
 	initial begin
-		digit_0[0] = 8'b00111100;
-		digit_0[1] = 8'b01100110;
-		digit_0[2] = 8'b01100110;
-		digit_0[3] = 8'b01100110;
-		digit_0[4] = 8'b01100110;
-		digit_0[5] = 8'b01100110;
-		digit_0[6] = 8'b00111100;
-		digit_0[7] = 8'b00000000;
+		digit_0[0] = 20'b00000111111111100000;
+		digit_0[1] = 20'b00000111111111100000;
+		digit_0[2] = 20'b00000111111111100000;
+		digit_0[3] = 20'b00000111111111100000;
+		digit_0[4] = 20'b11111000000000011111;
+		digit_0[5] = 20'b11111000000000011111;
+		digit_0[6] = 20'b11111000000000011111;
+		digit_0[7] = 20'b11111000000000011111;
 	end
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -459,10 +459,9 @@ module display(
 						end
 				end
 				
-			if (counter_y >= 200 && counter_y < 208 && counter_x >= 200 && counter_x < 208)
+			if (counter_y >= 74 && counter_y < 82 && counter_x >= 428 && counter_x < 448)
 				begin 
-					
-					if (digit_0[counter_y - 200][7-(counter_x - 200)]) begin
+					if (digit_0[counter_y - 74][19-(counter_x - 428)]) begin
 						r_red <= 8'h00;
 						r_blue <= 8'h00;
 						r_green <= 8'h00;
