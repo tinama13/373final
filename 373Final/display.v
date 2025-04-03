@@ -74,25 +74,20 @@ module display(
 	wire [9:0] dot_x = origin_x + input_x;
 	wire [9:0] dot_y = origin_y + input_y;
 
-	reg [19:0] digit_0 [0:7];
+	reg [19:0] digit_0 [0:5];
 	initial begin
 		digit_0[0] = 20'b00000111111111100000;
-		digit_0[1] = 20'b00000111111111100000;
-		digit_0[2] = 20'b00000111111111100000;
-		digit_0[3] = 20'b00000111111111100000;
+		digit_0[1] = 20'b11111000000000011111;
+		digit_0[2] = 20'b11111000000000011111;
+		digit_0[3] = 20'b11111000000000011111;
 		digit_0[4] = 20'b11111000000000011111;
-		digit_0[5] = 20'b11111000000000011111;
-		digit_0[6] = 20'b11111000000000011111;
-		digit_0[7] = 20'b11111000000000011111;
+		digit_0[5] = 20'b00000111111111100000;
 	end
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// pattern generate
 		always @ (posedge CLOCK_50)
 		begin
-			r_red <= 8'hFF;
-			r_blue <= 8'hFF;
-			r_green <= 8'hFF;
 			
 			////////////////////////////////////////////////////////////////////////////////////// SECTION 1
 			if (counter_y < 136)
@@ -458,16 +453,54 @@ module display(
 							r_green <= 8'h00;
 						end
 				end
-				
-			if (counter_y >= 74 && counter_y < 82 && counter_x >= 428 && counter_x < 448)
-				begin 
-					if (digit_0[counter_y - 74][19-(counter_x - 428)]) begin
-						r_red <= 8'h00;
-						r_blue <= 8'h00;
-						r_green <= 8'h00;
-					end
-					
+			
+			if (counter_y >= 74 && counter_y < 104 && counter_x >= 428 && counter_x < 448) begin
+					  case (counter_y)
+							74, 75, 76, 77, 78: begin
+								 if (digit_0[0][19 - (counter_x - 428)]) begin
+									  r_red   <= 8'hFF;
+									  r_blue  <= 8'h00;
+									  r_green <= 8'h00;
+								 end
+							end
+							79, 80, 81, 82, 83: begin
+								 if (digit_0[1][19 - (counter_x - 428)]) begin
+									  r_red   <= 8'hFF;
+									  r_blue  <= 8'h00;
+									  r_green <= 8'h00;
+								 end
+							end
+							84, 85, 86, 87, 88: begin
+								 if (digit_0[2][19 - (counter_x - 428)]) begin
+									  r_red   <= 8'hFF;
+									  r_blue  <= 8'h00;
+									  r_green <= 8'h00;
+								 end
+							end
+							89, 90, 91, 92, 93: begin
+								 if (digit_0[3][19 - (counter_x - 428)]) begin
+									  r_red   <= 8'hFF;
+									  r_blue  <= 8'h00;
+									  r_green <= 8'h00;
+								 end
+							end
+							94, 95, 96, 97, 98: begin
+								 if (digit_0[4][19 - (counter_x - 428)]) begin
+									  r_red   <= 8'hFF;
+									  r_blue  <= 8'h00;
+									  r_green <= 8'h00;
+								 end
+							end
+							99, 100, 101, 102, 103: begin
+								 if (digit_0[5][19 - (counter_x - 428)]) begin
+									  r_red   <= 8'hFF;
+									  r_blue  <= 8'h00;
+									  r_green <= 8'h00;
+								 end
+							end
+					  endcase
 				end
+		
 		end  // always
 						
 	// end pattern generate
