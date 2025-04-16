@@ -8,7 +8,7 @@ module display(
 	input [17:0] SW,
 	input [3:0] KEY,
 	input [35:0] GPIO,
-	output wire [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5,
+	output wire [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, HEX6, HEX7,
 	output wire [7:0] LEDG,
    output wire [7:0] LEDR,
 	output VGA_HS,
@@ -71,8 +71,8 @@ module display(
 	// gesture UART
 	
 	wire [7:0] motion_state;
-   wire [7:0] lidar_x;
-   wire [7:0] lidar_y;
+   wire [15:0] lidar_x;
+   wire [15:0] lidar_y;
    wire packet_valid;
    wire gpio_0 = GPIO[0];
 	wire gpio_1 = GPIO[1];
@@ -84,13 +84,46 @@ module display(
        .rst(~KEY[0]),
        .gpio_0(gpio_0),
        .motion_state(motion_state),
-       .lidar_x(lidar_x),
-       .lidar_y(lidar_y),
+       .lidar_x_upper(lidar_x[15:8]),
+		 .lidar_x_lower(lidar_x[7:0]),
+       .lidar_y_upper(lidar_y[15:8]),
+		 .lidar_y_lower(lidar_y[7:0]),
 		 .rx_byte1(rx_byte),
        .packet_valid(packet_valid)
    );
 	 
-	parameter DOT_RADIUS = 3;
+	reg [31:0] display_timer;
+	reg [7:0] current_motion_state;
+	reg display_locked;
+	
+	parameter CLOCK_FREQ = 50_000_000;
+	parameter HOLD_TIME = 1 * CLOCK_FREQ;
+	
+	always @(posedge CLOCK_50 or posedge reset) begin
+			if (reset) begin
+				display_timer <= 0;
+				display_locked <= 0;
+				current_motion_state <= 1;
+			end else begin
+				if (packet_valid && !display_locked && motion_state != current_motion_state) begin
+					current_motion_state <= motion_state;
+
+					if (motion_state != 1) begin
+						display_timer <= HOLD_TIME;
+						display_locked <= 1;
+					end
+				end else if (display_locked) begin
+					if (display_timer > 0) begin
+						display_timer <= display_timer - 1;
+					end else begin
+						display_locked <= 0;
+						current_motion_state <= 1; // Return to idle after holding
+					end
+				end
+			end
+	end
+	
+	parameter DOT_RADIUS = 200;
 	parameter origin_x = 155;
 	parameter origin_y = 46;
 	parameter max_x = 504;
@@ -99,11 +132,11 @@ module display(
 	// wire [8:0] input_x = SW[17:9];
 	// wire [8:0] input_y = SW[8:0];
 	
-	wire [8:0] input_x = lidar_x;
-	wire [8:0] input_y = lidar_y;
+	wire [15:0] input_x = lidar_x;
+	wire [15:0] input_y = lidar_y;
 	
-	wire [9:0] dot_x = origin_x + input_x;
-	wire [9:0] dot_y = origin_y + input_y;
+	wire [15:0] dot_x = origin_x + input_x;
+	wire [15:0] dot_y = origin_y + input_y;
 	
 	wire [29:0] digit_x100 [0:3];
 	wire [29:0] digit_x10 [0:3];
@@ -176,22 +209,24 @@ module display(
 	// test 
 	hex_decoder hex0 (.in(lidar_y[3:0]),     .out(HEX0));
    hex_decoder hex1 (.in(lidar_y[7:4]),     .out(HEX1));
-   hex_decoder hex2 (.in(lidar_x[3:0]),     .out(HEX2));
-	hex_decoder hex3 (.in(lidar_x[7:4]),     .out(HEX3));
+   hex_decoder hex2 (.in(lidar_y[11:8]),     .out(HEX2));
+	hex_decoder hex3 (.in(lidar_y[15:12]),     .out(HEX3));
+	
+	hex_decoder hex4 (.in(lidar_x[3:0]),     .out(HEX4));
+   hex_decoder hex5 (.in(lidar_x[7:4]),     .out(HEX5));
+   hex_decoder hex6 (.in(lidar_x[11:8]),     .out(HEX6));
+	hex_decoder hex7 (.in(lidar_x[15:12]),     .out(HEX7));
 	 
-	hex_decoder hex4 (.in(rx_byte[3:0]), .out(HEX4));
-	hex_decoder hex5 (.in(rx_byte[7:4]), .out(HEX5));
 
    // display raw bytes on LEDs
    assign LEDG = motion_state;
-   assign LEDR[7:2] = lidar_x[5:0];
 	 
 	assign LEDR[0] = ~gpio_0;  // should blink
 	assign LEDR[1] = ~packet_valid;
 	assign gpio_1 = packet_valid;
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// pattern generate
+	// border generate
 		always @ (posedge CLOCK_50)
 		begin
 			
@@ -322,7 +357,7 @@ module display(
 			end
 			
 			
-			// Write X 
+			// Write letter X
 			if (counter_y >= 95 && counter_y < 115 && counter_x >= 735 && counter_x < 765) begin
 					  case (counter_y)
 							95, 96, 97, 98, 99: begin
@@ -356,11 +391,7 @@ module display(
 					  endcase
 				end
 				
-			// X lidar data
-			
-			
-			
-			// Write Y 
+			// Write letter Y 
 			if (counter_y >= 215 && counter_y < 235 && counter_x >= 735 && counter_x < 765) begin
 					  case (counter_y)
 							215, 216, 217, 218, 219: begin
@@ -396,7 +427,7 @@ module display(
 				
 			// Write Gesture data 
 			// TAP
-			if (motion_state == 2) begin
+			if (current_motion_state == 2) begin
 					if (counter_y >= 400 && counter_y < 420 && counter_x >= 735 && counter_x < 765) begin
 					  case (counter_y)
 							400, 401, 402, 403, 404: begin
@@ -501,7 +532,7 @@ module display(
 				end
 			
 			// DRAG
-			if (motion_state == 3) begin
+			if (current_motion_state == 3) begin
 					if (counter_y >= 400 && counter_y < 420 && counter_x >= 735 && counter_x < 765) begin
 					  case (counter_y)
 							400, 401, 402, 403, 404: begin
@@ -640,7 +671,7 @@ module display(
 				end
 			
 			// IDLE
-			if (motion_state == 1) begin
+			if (current_motion_state == 1) begin
 					if (counter_y >= 400 && counter_y < 420 && counter_x >= 735 && counter_x < 765) begin
 					  case (counter_y)
 							400, 401, 402, 403, 404: begin
@@ -978,20 +1009,14 @@ module display(
 					  endcase
 				end
 				
-				if (counter_x >= (dot_x - DOT_RADIUS) && counter_x <= (dot_x + DOT_RADIUS) &&
-					counter_y >= (dot_y - DOT_RADIUS) && counter_y <= (dot_y + DOT_RADIUS))
-							begin
-										r_red   <= 8'hFFFF;
-										r_blue  <= 8'h00;
-										r_green <= 8'h00;
-							end
+			// DOT
+			if (((counter_x - dot_x)*(counter_x - dot_x) + (counter_y - dot_y)*(counter_y - dot_y)) <= (DOT_RADIUS * DOT_RADIUS))
+						begin
+							r_red   <= 8'hFF;
+							r_blue  <= 8'h00;
+							r_green <= 8'h00;
+						end
 				
-				if (counter_x == 720)
-				begin
-					r_red <= 8'h0;    
-					r_blue <= 8'h0;
-					r_green <= 8'hFFFF;
-				end  // if (counter_y < 135)
 				
 		end  // always
 						
