@@ -23,6 +23,7 @@
 /* USER CODE BEGIN Includes */
 #include "stdbool.h"
 #include "math.h"
+#include "stdio.h"
 
 /* USER CODE END Includes */
 
@@ -52,8 +53,16 @@ uint8_t data_buffer[2000];
 char uart_rx_buffer[64];
 
 float theta_min = 0, theta_max = 90;
-float x_min = 10, x_max = 55;
-float y_min = 0, y_max = 40;
+float x_min = 9, x_max = 46;
+float y_min = 0, y_max = 31;
+
+float x_hundreds = 5;
+float x_tens_ones = 65;
+float y_hundreds = 4;
+float y_tens_ones = 58;
+
+int x_resolution = 565;
+int y_resolution = 458;
 
 /* USER CODE END PV */
 
@@ -367,32 +376,56 @@ void scan_xy(float theta_lo, float theta_hi, float x_lo, float x_hi, float y_lo,
 	float avg_x = xx/((int)k);
 	float avg_y = yy/((int)k);
 
-	uint16_t x_coor = 565*((avg_x - x_lo) / (x_hi - x_lo));
-	uint16_t y_coor = 458*((avg_y - y_lo) / (y_hi - y_lo));
+	uint16_t x_coor = x_resolution*((avg_x - x_lo) / (x_hi - x_lo));
+	uint16_t y_coor = y_resolution*((avg_y - y_lo) / (y_hi - y_lo));
 
 	uint8_t x_upper = (x_coor >> 8)& 0xFF;
 	uint8_t x_lower = (x_coor & 0xFF);
-	uint8_t y_upper = (x_coor >> 8)& 0xFF;
-	uint8_t y_lower = (x_coor & 0xFF);
+	uint8_t y_upper = (y_coor >> 8)& 0xFF;
+	uint8_t y_lower = (y_coor & 0xFF);
 
 	uint8_t xy_coor[4] = {x_upper, x_lower, y_upper, y_lower};
 
 	ret = HAL_UART_Transmit(&huart3, xy_coor, 4, HAL_MAX_DELAY);
 
-	printf("Avg of %d points (x,y): (%f, %f)cm\ncoordinate: (%d, %d)", k, avg_x, avg_y, x_coor, y_coor);
+	printf("Avg of %d points (x,y): (%f, %f)cm\n\tcoordinate: (%d, %d)\n", k, avg_x, avg_y, x_coor, y_coor);
 }
 
 void ask_calibration_input(const char* label, float* variable) {
+	char c;
+	int i = 0;
+    bool reading = true;
+
 	printf("Enter %s: ", label);
+	fflush(stdout);
 
 	memset(uart_rx_buffer, 0, sizeof(uart_rx_buffer));
-	while (HAL_UART_Receive(&hlpuart1, (uint8_t*)uart_rx_buffer, sizeof(uart_rx_buffer), HAL_MAX_DELAY) != HAL_OK) {}
+
+	while (reading && i < sizeof(uart_rx_buffer) - 1) {
+		if (HAL_UART_Receive(&hlpuart1, (uint8_t*)&c, 1, 5000) == HAL_OK) {
+			HAL_UART_Transmit(&hlpuart1, (uint8_t*)&c, 1, 100);
+
+			if (c == '\r' || c == '\n') {
+				reading = false;
+				HAL_UART_Receive(&hlpuart1, (uint8_t*)&c, 1, 10);
+				break;
+			}
+
+			uart_rx_buffer[i++] = c;
+		} else {
+			break;
+		}
+	}
+
+	uart_rx_buffer[i] = '\0';
 
 	if (sscanf(uart_rx_buffer, "%f", variable) == 1) {
-		printf("%s set to: %f\n", label, *variable);
+		printf("\n%s set to: %f\n", label, *variable);
 	} else {
-		printf("Invalid input for %s. Using default: %f\n", label, *variable);
+		printf("\nInvalid input for %s. Using default: %f\n", label, *variable);
 	}
+
+	fflush(stdout);
 }
 
 
@@ -435,16 +468,31 @@ int main(void)
   printf("---\nNew Run\n");
   HAL_Delay(100);
   reset_lidar();
+  printf("---\nReset Done\n");
 
-  ask_calibration_input("theta_min", &theta_min);
-  ask_calibration_input("theta_max", &theta_max);
-  ask_calibration_input("x_min", &x_min);
-  ask_calibration_input("x_max", &x_max);
-  ask_calibration_input("y_min", &y_min);
-  ask_calibration_input("y_max", &y_max);
+  printf("Would you like to customize lidar parameters? (Y=1 / N=0)\n");
+  float customize_param = 0;
+  ask_calibration_input("(Y=1 / N=0)", &customize_param);
+
+  if(customize_param == 1){
+	  ask_calibration_input("x_hundreds", &x_hundreds);
+	  ask_calibration_input("x_tens_ones", &x_tens_ones);
+	  ask_calibration_input("y_hundreds", &y_hundreds);
+	  ask_calibration_input("y_tens_ones", &y_tens_ones);
+	  x_resolution = (100*(int)(x_hundreds))+((int)(x_tens_ones));
+	  y_resolution = (100*(int)(y_hundreds))+((int)(y_tens_ones));
+	  ask_calibration_input("theta_min", &theta_min);
+	  ask_calibration_input("theta_max", &theta_max);
+	  ask_calibration_input("x_min", &x_min);
+	  ask_calibration_input("x_max", &x_max);
+	  ask_calibration_input("y_min", &y_min);
+	  ask_calibration_input("y_max", &y_max);
+  }
+
+//  printf("x_hud = %d, x_tenone = %d\n", x_hundreds, x_tens_ones);
 
   printf("Starting scan with parameters:\n");
-  printf("theta: [%f, %f], x: [%f, %f], y: [%f, %f]\n", theta_min, theta_max, x_min, x_max, y_min, y_max);
+  printf("resolution: (%d,%d), theta: [%f, %f], x: [%f, %f], y: [%f, %f]\n", x_resolution, y_resolution, theta_min, theta_max, x_min, x_max, y_min, y_max);
 
   /* USER CODE END 2 */
 
