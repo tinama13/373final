@@ -1,0 +1,18 @@
+
+State Machine - |display|UART:uart_inst|s
+Name s.BYTE6 s.BYTE5 s.BYTE4 s.BYTE3 s.BYTE2 s.BYTE1 s.HEADER s.IDLE 
+s.IDLE 0 0 0 0 0 0 0 0 
+s.HEADER 0 0 0 0 0 0 1 1 
+s.BYTE1 0 0 0 0 0 1 0 1 
+s.BYTE2 0 0 0 0 1 0 0 1 
+s.BYTE3 0 0 0 1 0 0 0 1 
+s.BYTE4 0 0 1 0 0 0 0 1 
+s.BYTE5 0 1 0 0 0 0 0 1 
+s.BYTE6 1 0 0 0 0 0 0 1 
+
+State Machine - |display|UART:uart_inst|uart_rx:uart_rx_inst|fsm_state
+Name fsm_state.FSM_STOP fsm_state.FSM_RECV fsm_state.FSM_START fsm_state.FSM_IDLE 
+fsm_state.FSM_IDLE 0 0 0 0 
+fsm_state.FSM_START 0 0 1 1 
+fsm_state.FSM_RECV 0 1 0 1 
+fsm_state.FSM_STOP 1 0 0 1 

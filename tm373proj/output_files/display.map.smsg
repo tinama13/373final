@@ -1,0 +1,6 @@
+Info (10281): Verilog HDL Declaration information at display.v(9): object "HEX5" differs only in case from object "hex5" in the same scope File: N:/tm373proj/display.v Line: 9
+Info (10281): Verilog HDL Declaration information at display.v(9): object "HEX6" differs only in case from object "hex6" in the same scope File: N:/tm373proj/display.v Line: 9
+Info (10281): Verilog HDL Declaration information at display.v(9): object "HEX7" differs only in case from object "hex7" in the same scope File: N:/tm373proj/display.v Line: 9
+Info (10281): Verilog HDL Declaration information at display.v(9): object "HEX0" differs only in case from object "hex0" in the same scope File: N:/tm373proj/display.v Line: 9
+Info (10281): Verilog HDL Declaration information at display.v(9): object "HEX1" differs only in case from object "hex1" in the same scope File: N:/tm373proj/display.v Line: 9
+Info (10281): Verilog HDL Declaration information at display.v(9): object "HEX2" differs only in case from object "hex2" in the same scope File: N:/tm373proj/display.v Line: 9

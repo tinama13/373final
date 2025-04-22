@@ -1,0 +1,185 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'UART:uart_inst|lidar_y_lower[2]'
+Slack : -52.462
+TNS   : -1789.403
+
+Type  : Slow 1200mV 85C Model Setup 'UART:uart_inst|lidar_y_lower[3]'
+Slack : -51.562
+TNS   : -2380.858
+
+Type  : Slow 1200mV 85C Model Setup 'UART:uart_inst|lidar_x_lower[3]'
+Slack : -48.375
+TNS   : -2265.605
+
+Type  : Slow 1200mV 85C Model Setup 'CLOCK_50'
+Slack : -22.150
+TNS   : -43.627
+
+Type  : Slow 1200mV 85C Model Setup 'ip1|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 32.976
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'CLOCK_50'
+Slack : 0.403
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'ip1|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.663
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'UART:uart_inst|lidar_y_lower[3]'
+Slack : 0.902
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'UART:uart_inst|lidar_x_lower[3]'
+Slack : 1.243
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'UART:uart_inst|lidar_y_lower[2]'
+Slack : 2.987
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'UART:uart_inst|lidar_y_lower[3]'
+Slack : -9.690
+TNS   : -5513.586
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'UART:uart_inst|lidar_x_lower[3]'
+Slack : -9.200
+TNS   : -5201.076
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'UART:uart_inst|lidar_y_lower[2]'
+Slack : -7.789
+TNS   : -2891.618
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLOCK_50'
+Slack : 9.658
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'ip1|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 19.710
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'UART:uart_inst|lidar_y_lower[2]'
+Slack : -47.800
+TNS   : -1629.451
+
+Type  : Slow 1200mV 0C Model Setup 'UART:uart_inst|lidar_y_lower[3]'
+Slack : -46.978
+TNS   : -2165.295
+
+Type  : Slow 1200mV 0C Model Setup 'UART:uart_inst|lidar_x_lower[3]'
+Slack : -43.872
+TNS   : -2056.640
+
+Type  : Slow 1200mV 0C Model Setup 'CLOCK_50'
+Slack : -19.980
+TNS   : -39.368
+
+Type  : Slow 1200mV 0C Model Setup 'ip1|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 33.510
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'CLOCK_50'
+Slack : 0.354
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'ip1|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.606
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'UART:uart_inst|lidar_y_lower[3]'
+Slack : 0.815
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'UART:uart_inst|lidar_x_lower[3]'
+Slack : 1.169
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'UART:uart_inst|lidar_y_lower[2]'
+Slack : 2.890
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'UART:uart_inst|lidar_y_lower[3]'
+Slack : -8.800
+TNS   : -4916.460
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'UART:uart_inst|lidar_x_lower[3]'
+Slack : -8.298
+TNS   : -4622.073
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'UART:uart_inst|lidar_y_lower[2]'
+Slack : -7.067
+TNS   : -2585.918
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : 9.614
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'ip1|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 19.711
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'UART:uart_inst|lidar_y_lower[2]'
+Slack : -26.087
+TNS   : -885.498
+
+Type  : Fast 1200mV 0C Model Setup 'UART:uart_inst|lidar_y_lower[3]'
+Slack : -25.815
+TNS   : -1170.804
+
+Type  : Fast 1200mV 0C Model Setup 'UART:uart_inst|lidar_x_lower[3]'
+Slack : -24.225
+TNS   : -1110.235
+
+Type  : Fast 1200mV 0C Model Setup 'CLOCK_50'
+Slack : -10.586
+TNS   : -20.819
+
+Type  : Fast 1200mV 0C Model Setup 'ip1|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 36.447
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'CLOCK_50'
+Slack : 0.181
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'ip1|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.304
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'UART:uart_inst|lidar_y_lower[3]'
+Slack : 0.654
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'UART:uart_inst|lidar_x_lower[3]'
+Slack : 0.776
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'UART:uart_inst|lidar_y_lower[2]'
+Slack : 1.737
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'UART:uart_inst|lidar_y_lower[3]'
+Slack : -4.398
+TNS   : -2321.089
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'UART:uart_inst|lidar_x_lower[3]'
+Slack : -4.302
+TNS   : -2175.701
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'UART:uart_inst|lidar_y_lower[2]'
+Slack : -3.564
+TNS   : -1195.527
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : 9.265
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'ip1|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 19.781
+TNS   : 0.000
+
+------------------------------------------------------------
