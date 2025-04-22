@@ -1,0 +1,21 @@
+18:57:06 **** Incremental Build of configuration Debug for project lab6 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4R5xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:151:22: warning: unused variable 'ret' [-Wunused-variable]
+  151 |    HAL_StatusTypeDef ret = HAL_I2C_Master_Transmit(&hi2c1, SAD_W_M, &buf[0], 2, 1000);
+      |                      ^~~
+arm-none-eabi-gcc -o "lab6.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\fl373test\lab6\STM32L4R5ZITXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="lab6.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: lab6.elf
+ 
+arm-none-eabi-size  lab6.elf 
+arm-none-eabi-objdump -h -S lab6.elf  > "lab6.list"
+   text	   data	    bss	    dec	    hex	filename
+  38012	    468	   2388	  40868	   9fa4	lab6.elf
+Finished building: default.size.stdout
+ 
+Finished building: lab6.list
+ 
+
+18:57:08 Build Finished. 0 errors, 1 warnings. (took 1s.853ms)
+

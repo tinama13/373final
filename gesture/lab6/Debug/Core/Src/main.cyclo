@@ -1,0 +1,13 @@
+../Core/Src/main.c:131:6:send_motion_packet	1
+../Core/Src/main.c:181:5:main	22
+../Core/Src/main.c:484:6:SystemClock_Config	4
+../Core/Src/main.c:529:13:MX_ADC1_Init	3
+../Core/Src/main.c:593:13:MX_I2C1_Init	4
+../Core/Src/main.c:647:13:MX_LPUART1_UART_Init	5
+../Core/Src/main.c:701:13:MX_USART2_UART_Init	5
+../Core/Src/main.c:755:13:MX_USART3_UART_Init	5
+../Core/Src/main.c:809:13:MX_GPIO_Init	1
+../Core/Src/main.c:1020:1:__io_putchar	1
+../Core/Src/main.c:1032:6:HAL_UART_RxCpltCallback	2
+../Core/Src/main.c:1042:6:HAL_ADC_ConvCpltCallback	1
+../Core/Src/main.c:1055:6:Error_Handler	1
