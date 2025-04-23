@@ -1,4 +1,7 @@
 ![team image](IMG_4188.jpeg)
+
+![Demo](https://github.com/user-attachments/assets/26958aa9-dfe0-438a-9a6d-1577f40e72f6)
+
 # Any Surface Touchscreen
 Our project aims to turn any flat surface into an interactive touchscreen interface using LiDAR and vibration sensors. By mounting LiDAR sensors around a surface, we can detect finger positions in real time and calculate precise (x, y) coordinates. These coordinates are processed by a microcontroller and used to control a connected device, such as a computer or projector. To enhance gesture recognition, we integrate an accelerometer and piezoelectic disk that captures surface vibrations to distinguish between different types of touch events like taps, drags, and clicks.
 
