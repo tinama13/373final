@@ -18,12 +18,15 @@ Finger Localization
   
 Gesture Sensing
 - NUCLEO-L4R5ZI-P
+- LSM303DLHC Accelerometer
+- Large Enclosed Piezo Element w/Wires
 
 VGA Visualization
-- FPGA
+- DE2-115 FPGA board
 
 System Integration
 - ESP32
+- Xbee PCB antenna
 ---
 ## References
 ### Brief Guide to RPLiDAR A1M8
