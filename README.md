@@ -1,5 +1,4 @@
-![team image](IMG_4188.jpeg)
-
+# Turn any flat surface into a interactive touchscreen!
 ![Demo](https://github.com/user-attachments/assets/26958aa9-dfe0-438a-9a6d-1577f40e72f6)
 
 # Any Surface Touchscreen
