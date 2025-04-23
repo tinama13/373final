@@ -11,12 +11,19 @@ This project brings together sensors, embedded systems, signal processing, and r
 ## Project Video
 [link](https://www.youtube.com/watch?v=PbikluQoMcs&t=233s&ab_channel=JinWookShin)
 
-## Hardware Requirements
+## Hardware Components
+Finger Localization
 - NUCLEO-L4R5ZI-P
 - RPLiDAR A1M8
-- 3
-- 4
-- 5
+  
+Gesture Sensing
+- NUCLEO-L4R5ZI-P
+
+VGA Visualization
+- FPGA
+
+System Integration
+- ESP32
 
 ## Brief Guide to RPLiDAR A1M8
 [Google Docs](https://docs.google.com/document/d/1IeCC1AuceanwxWrNEfNu5hHAYbNNzkttbM0vRZzuzNg/edit?usp=sharing)
