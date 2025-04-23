@@ -24,12 +24,13 @@ VGA Visualization
 
 System Integration
 - ESP32
-
-## Brief Guide to RPLiDAR A1M8
+---
+## References
+### Brief Guide to RPLiDAR A1M8
 [Google Docs](https://docs.google.com/document/d/1IeCC1AuceanwxWrNEfNu5hHAYbNNzkttbM0vRZzuzNg/edit?usp=sharing)
 
-## STM32 NUCELO-L4R5ZI User Manual
+### STM32 NUCELO-L4R5ZI User Manual
 [link](https://www.st.com/resource/en/user_manual/um2179-stm32-nucleo144-boards-mb1312-stmicroelectronics.pdf)
 
-## DE2-115 FPGA Board User Manual
+### DE2-115 FPGA Board User Manual
 [link](https://www.terasic.com.tw/attachment/archive/502/DE2_115_User_manual.pdf)
