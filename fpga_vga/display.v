@@ -1,6 +1,5 @@
 `timescale 1ns / 1ps
 
-////////////////////////////////////////////////////////////////////////
 module display(
 	input CLOCK_50,           // 50 MHz
 	input [17:0] SW,
@@ -27,7 +26,6 @@ module display(
 	
 	wire clk25MHz;
 
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// clk divider 50 MHz to 25 MHz
 	ip ip1(
 		.areset(reset),
@@ -37,8 +35,6 @@ module display(
 		);  
 	// end clk divider 50 MHz to 25 MHz
 
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// counter and sync generation
 	always @(posedge clk25MHz)  // horizontal counter
 		begin 
 			if (counter_x < 799)
@@ -254,112 +250,6 @@ module display(
 	// border generate
 		always @ (posedge CLOCK_50)
 		begin
-			
-			/*
-			////////////////////////////////////////////////////////////////////////////////////// SECTION 1
-			if (counter_y < 41)
-				begin              
-					r_red <= 8'hFFFF;    // white
-					r_blue <= 8'hFFFF;
-					r_green <= 8'hFFFF;
-				end  // if (counter_y < 135)
-			////////////////////////////////////////////////////////////////////////////////////// END SECTION 1
-			
-			////////////////////////////////////////////////////////////////////////////////////// SECTION 2
-			else if (counter_y >= 41 && counter_y < 46)
-				begin 
-					if (counter_x < 150)
-						begin 
-							r_red <= 8'hFFFF;    // white
-							r_blue <= 8'hFFFF;
-							r_green <= 8'hFFFF;
-						end
-					else if (counter_x < 725)
-						begin 
-							r_red <= 8'h0;    // black
-							r_blue <= 8'h0;
-							r_green <= 8'h0;
-						end
-					else
-						begin 
-							r_red <= 8'hFFFF;    // white
-							r_blue <= 8'hFFFF;
-							r_green <= 8'hFFFF;
-						end
-				end
-			////////////////////////////////////////////////////////////////////////////////////// END SECTION 2
-
-			////////////////////////////////////////////////////////////////////////////////////// SECTION 3
-			else if (counter_y >= 46 && counter_y < 504)
-				begin 
-					if (counter_x < 150)
-						begin 
-							r_red <= 8'hFFFF;    // white
-							r_blue <= 8'hFFFF;
-							r_green <= 8'hFFFF;
-						end
-					else if (counter_x < 155)
-						begin 
-							r_red <= 8'h00;    // black
-							r_blue <= 8'h00;
-							r_green <= 8'h00;
-						end
-					else if (counter_x < 720)
-						begin 
-							r_red <= 8'hFFFF;    // white
-							r_blue <= 8'hFFFF;
-							r_green <= 8'hFFFF;
-						end
-					else if (counter_x < 725)
-						begin 
-							r_red <= 8'h00;    // black
-							r_blue <= 8'h00;
-							r_green <= 8'h00;
-						end
-					else
-						begin 
-							r_red <= 8'hFFFF;    // white
-							r_blue <= 8'hFFFF;
-							r_green <= 8'hFFFF;
-						end
-				end
-			////////////////////////////////////////////////////////////////////////////////////// END SECTION 3
-
-			////////////////////////////////////////////////////////////////////////////////////// SECTION 4
-			else if (counter_y >= 504 && counter_y < 509)
-				begin 
-					if (counter_x < 150)
-						begin 
-							r_red <= 8'hFFFF;    // white
-							r_blue <= 8'hFFFF;
-							r_green <= 8'hFFFF;
-						end
-					else if (counter_x < 725)
-						begin 
-							r_red <= 8'h0;    // black
-							r_blue <= 8'h0;
-							r_green <= 8'h0;
-						end
-					else
-						begin 
-							r_red <= 8'hFFFF;    // white
-							r_blue <= 8'hFFFF;
-							r_green <= 8'hFFFF;
-						end
-				end
-			////////////////////////////////////////////////////////////////////////////////////// END SECTION 4
-			
-			////////////////////////////////////////////////////////////////////////////////////// SECTION 5
-			else
-				begin
-					r_red <= 8'hFFFF;    // white
-					r_blue <= 8'hFFFF;
-					r_green <= 8'hFFFF;
-				end
-			////////////////////////////////////////////////////////////////////////////////////// END SECTION 5
-			
-			*/
-			
 			
 			////////////////////////////////////////////////////////////////////////////////////// SECTION 1
 			if (counter_y < 41)
@@ -1178,7 +1068,6 @@ module display(
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// color output assignments
-	// only output the colors if the counters are within the adressable video time constraints
 	assign VGA_R = (counter_x > 144 && counter_x <= 783 && counter_y > 35 && counter_y <= 514) ? r_red : 8'h0;
 	assign VGA_B = (counter_x > 144 && counter_x <= 783 && counter_y > 35 && counter_y <= 514) ? r_blue : 8'h0;
 	assign VGA_G = (counter_x > 144 && counter_x <= 783 && counter_y > 35 && counter_y <= 514) ? r_green : 8'h0;
