@@ -8,6 +8,9 @@ This project brings together sensors, embedded systems, signal processing, and r
 
 (EECS 373 Winter 25)
 
+## Project Video
+[link](https://www.youtube.com/watch?v=PbikluQoMcs&t=233s&ab_channel=JinWookShin)
+
 ## Hardware Requirements
 - 1
 - 2
