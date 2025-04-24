@@ -11,7 +11,7 @@ This project brings together sensors, embedded systems, signal processing, and r
 (EECS 373 Winter 25)
 
 ## Project Video
-[link](https://www.youtube.com/watch?v=PbikluQoMcs&t=233s&ab_channel=JinWookShin)
+[![Demo Video](http://img.youtube.com/vi/3E9mqm8sJ4Q/0.jpg)](https://youtu.be/3E9mqm8sJ4Q)
 
 ## Hardware Components
 Finger Localization
