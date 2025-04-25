@@ -1,6 +1,14 @@
 # Turn any flat surface into a interactive touchscreen!
 ![Demo](https://github.com/user-attachments/assets/44e1a2db-4f7d-4080-8270-4c2ba0e66b18)
 
+TV – Interactive Drawing: Precise stylus input enables real-time drawing and annotation on a large display.
+
+Drywall – Smart Wall Interface: Turns any wall into an interactive control panel—ideal for home automation or presentations.
+
+Cardboard – Projected Game Surface: Combines projection and touch sensing to create a portable, low-cost interactive gaming setup.
+
+Monitor – Touch Retrofits: Adds tap and drag functionality to standard displays, enhancing accessibility and interaction.
+
 ## Motivation
 
 Touchscreens are everywhere—but they’re expensive to scale and limited to the surfaces they’re built into. We wanted to challenge that. What if any flat surface could become interactive, without needing a special screen? This project was born out of that question. By fusing LiDAR, vibration sensing, and embedded systems, we set out to create a low-cost, flexible solution for turning ordinary surfaces into smart, touch-enabled interfaces. Whether for accessibility, education, or creative expression, the potential applications are wide open—and we’re just scratching the surface!
@@ -16,14 +24,6 @@ This project brings together sensors, embedded systems, signal processing, and r
 
 ## Project Video
 [![Demo Video](http://img.youtube.com/vi/3E9mqm8sJ4Q/0.jpg)](https://youtu.be/3E9mqm8sJ4Q)
-
-TV – Interactive Drawing: Precise stylus input enables real-time drawing and annotation on a large display.
-
-Drywall – Smart Wall Interface: Turns any wall into an interactive control panel—ideal for home automation or presentations.
-
-Cardboard – Projected Game Surface: Combines projection and touch sensing to create a portable, low-cost interactive gaming setup.
-
-Monitor – Touch Retrofits: Adds tap and drag functionality to standard displays, enhancing accessibility and interaction.
 
 
 ## Hardware Components
