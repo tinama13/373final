@@ -9,7 +9,7 @@
 
 **Monitor** – *Touch Retrofits: Adds tap and drag functionality to standard displays, enhancing accessibility and interaction.*
 
-## Motivation
+# Motivation
 
 Touchscreens are everywhere, but they’re expensive to scale and limited to the surfaces they’re built into. We wanted to challenge that. What if any flat surface could become interactive, without needing a special screen? This project was born out of that question. By fusing LiDAR, vibration sensing, and embedded systems, we set out to create a low-cost, flexible solution for turning ordinary surfaces into smart, touch-enabled interfaces. Whether for accessibility, education, or creative expression, the potential applications are wide open, and we’re just scratching the surface!
 
@@ -22,13 +22,13 @@ This project brings together sensors, embedded systems, signal processing, and r
 
 (EECS 373 Winter 25)
 
-# Assembled Device
+## Assembled Device
 <img width="608" alt="Screenshot 2025-04-25 at 1 49 42 PM" src="https://github.com/user-attachments/assets/31b070e7-5b7c-4525-8f31-df010fbd9786" />
 
-# Functional Diagram
+## Functional Diagram
 <img width="1041" alt="Screenshot 2025-04-25 at 1 37 24 PM" src="https://github.com/user-attachments/assets/04b7b106-c3cb-4411-874c-86169fd30bb5" />
 
-# Component Diagram
+## Component Diagram
 <img width="1036" alt="Screenshot 2025-04-25 at 1 37 50 PM" src="https://github.com/user-attachments/assets/8ed26fc9-d6b4-489d-9b59-5c321ed27380" />
 
 ## Project Video
