@@ -22,6 +22,9 @@ This project brings together sensors, embedded systems, signal processing, and r
 
 (EECS 373 Winter 25)
 
+# Assembled Device
+<img width="608" alt="Screenshot 2025-04-25 at 1 49 42 PM" src="https://github.com/user-attachments/assets/31b070e7-5b7c-4525-8f31-df010fbd9786" />
+
 # Functional Diagram
 <img width="1041" alt="Screenshot 2025-04-25 at 1 37 24 PM" src="https://github.com/user-attachments/assets/04b7b106-c3cb-4411-874c-86169fd30bb5" />
 
