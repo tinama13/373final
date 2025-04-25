@@ -1,13 +1,13 @@
 # Turn any flat surface into a interactive touchscreen!
 ![Demo](https://github.com/user-attachments/assets/44e1a2db-4f7d-4080-8270-4c2ba0e66b18)
 
-**TV** – Interactive Drawing: Precise stylus input enables real-time drawing and annotation on a large display.
+**TV** – *Interactive Drawing: Precise stylus input enables real-time drawing and annotation on a large display.*
 
-**Drywall** – Smart Wall Interface: Turns any wall into an interactive control panel—ideal for home automation or presentations.
+**Drywall** – *Smart Wall Interface: Turns any wall into an interactive control panel—ideal for home automation or presentations.*
 
-**Cardboard** – Projected Game Surface: Combines projection and touch sensing to create a portable, low-cost interactive gaming setup.
+**Cardboard** – *Projected Game Surface: Combines projection and touch sensing to create a portable, low-cost interactive gaming setup.*
 
-**Monitor** – Touch Retrofits: Adds tap and drag functionality to standard displays, enhancing accessibility and interaction.
+**Monitor** – *Touch Retrofits: Adds tap and drag functionality to standard displays, enhancing accessibility and interaction.*
 
 ## Motivation
 
