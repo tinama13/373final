@@ -3,7 +3,7 @@
 
 **TV** – *Interactive Drawing: Precise stylus input enables real-time drawing and annotation on a large display.*
 
-**Drywall** – *Smart Wall Interface: Turns any wall into an interactive control panel—ideal for home automation or presentations.*
+**Drywall** – *Smart Wall Interface: Turns any wall into an interactive control panel, ideal for home automation or presentations.*
 
 **Cardboard** – *Projected Game Surface: Combines projection and touch sensing to create a portable, low-cost interactive gaming setup.*
 
