@@ -22,6 +22,12 @@ This project brings together sensors, embedded systems, signal processing, and r
 
 (EECS 373 Winter 25)
 
+# Functional Diagram
+<img width="1041" alt="Screenshot 2025-04-25 at 1 37 24 PM" src="https://github.com/user-attachments/assets/04b7b106-c3cb-4411-874c-86169fd30bb5" />
+
+# Component Diagram
+<img width="1036" alt="Screenshot 2025-04-25 at 1 37 50 PM" src="https://github.com/user-attachments/assets/8ed26fc9-d6b4-489d-9b59-5c321ed27380" />
+
 ## Project Video
 [![Demo Video](http://img.youtube.com/vi/3E9mqm8sJ4Q/0.jpg)](https://youtu.be/3E9mqm8sJ4Q)
 
