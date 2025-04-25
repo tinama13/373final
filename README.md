@@ -26,10 +26,12 @@ This project brings together sensors, embedded systems, signal processing, and r
 <img width="608" alt="Screenshot 2025-04-25 at 1 49 42 PM" src="https://github.com/user-attachments/assets/31b070e7-5b7c-4525-8f31-df010fbd9786" />
 
 ## Functional Diagram
-<img width="1041" alt="Screenshot 2025-04-25 at 1 37 24 PM" src="https://github.com/user-attachments/assets/04b7b106-c3cb-4411-874c-86169fd30bb5" />
+![373 Proposal Diagram(1)](https://github.com/user-attachments/assets/0f33d81f-187f-4dc6-8e8c-ac5099cc897b)
 
 ## Component Diagram
-<img width="1036" alt="Screenshot 2025-04-25 at 1 37 50 PM" src="https://github.com/user-attachments/assets/8ed26fc9-d6b4-489d-9b59-5c321ed27380" />
+![373 Proposal Diagram](https://github.com/user-attachments/assets/74f4b602-887b-4aab-8d3c-3eef31b23403)
+
+
 
 ## Project Video
 [![Demo Video](http://img.youtube.com/vi/3E9mqm8sJ4Q/0.jpg)](https://youtu.be/3E9mqm8sJ4Q)
